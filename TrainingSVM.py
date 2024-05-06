@@ -19,11 +19,10 @@ from sklearn.metrics import accuracy_score, classification_report
 from sklearn.preprocessing import StandardScaler
 
 from sklearn.metrics import accuracy_score, classification_report
-import seasonYYlooder
-#import seasonYYlooder
+import seasonYloader
+#import seasonYloader
 
-df_alg,df_nonalg,df_nonveg=seasonYYlooder.load()
-
+df_alg,df_nonalg,df_nonveg=seasonYloader.load()
 
 xtrain_0= pd.concat([df_alg.iloc[:,45:-1],df_nonalg.iloc[:,45:-1], df_nonveg.iloc[:,45:-1]],ignore_index=True)
 ytrain_0= pd.concat([df_alg.iloc[:,-1:],df_nonalg.iloc[:,-1:], df_nonveg.iloc[:,-1:]],ignore_index=True)
