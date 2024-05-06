@@ -28,12 +28,7 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
 # Define data augmentation parameters
 def load():
-    df_alg_site1=pd.read_csv("site1/alg_site1_window.csv")
-    df_alg_site2=pd.read_csv("site2/alg_site2_window.csv")
-    df_alg= pd.concat([df_alg_site1,df_alg_site2],ignore_index=True)
-    df_alg.to_csv("site1/alg_site1_window_combined.csv",index=False)
-    print("before alg")
-    print(len(df_alg))
+    df_alg=pd.read_csv("data/training/site1/alg_site1_window.csv")
     df_algtemp=df_alg
     #df_alg=pd.DataFrame({})
     # Load the data from CSV
@@ -86,11 +81,7 @@ def load():
 
     df_alg["Label"]=0
     #########################
-    df_nonalg_site1=pd.read_csv("site1/non_alg_site1_window.csv")
-    df_nonalg_site2=pd.read_csv("site2/non_alg_site2_window.csv")
-    df_nonalg= pd.concat([df_nonalg_site1,df_nonalg_site2],ignore_index=True)
-    df_nonalg = df_nonalg[df_nonalg.index % 7 == 0]
-    df_nonalg.to_csv("site1/nonalg_site1_window_combined.csv", index=False)
+    df_nonalg=pd.read_csv("data/training/site1/nonalg_site1_window.cs")
 
     df_nonalgtemp=df_nonalg
     print("before nonalg hi")
@@ -139,11 +130,7 @@ def load():
     print("before nonalg")
     print(len(df_nonalg))
     ####################################
-    df_nonveg_site1= pd.read_csv("site1/non_veg_site1_window.csv")
-    df_nonveg_site2=pd.read_csv("site2/non_veg_site2_window.csv")
-    df_nonveg= pd.concat([df_nonveg_site1,df_nonveg_site2],ignore_index=True)
-    df_nonveg = df_nonveg[df_nonveg.index % 120 == 0]
-    df_nonveg.to_csv("site1/nonveg_site1_window_combined.csv", index=False)
+    df_nonveg= pd.read_csv("data/training/site1/nonveg_site1_window.cs")
 
     df_nonvegtemp=df_nonveg
     print("before nonalg hi")
