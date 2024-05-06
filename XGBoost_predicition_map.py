@@ -34,18 +34,94 @@ def create_dataframe(raster_file):
 
             # Initialize lists to store pixel values and surrounding pixel values
             pixels = []
-            surrounding_pixels1 = []
-            surrounding_pixels2 = []
-            surrounding_pixels3 = []
-            surrounding_pixels4 = []
-            surrounding_pixels5 = []
 
             # Iterate over each pixel
             print(src.height)
             for batch in range(1 + math.floor(src.height / 1000)):
 
-                df=pd.read_csv('site3/databatch_' + str(batch) + '.csv')
+                surrounding_pixels1 = []
+                surrounding_pixels2 = []
+                surrounding_pixels3 = []
+                surrounding_pixels4 = []
+                surrounding_pixels5 = []
+                if ((src.height - batch * 1000) > 1000):
+                    limL = batch * 1000
+                    limH = (1 + batch) * 1000
 
+                else:
+                    limL = batch * 1000
+                    limH = src.height
+                    print(limL)
+                    print(limH)
+                for row in range(limL, limH):
+                    for col in range(src.width):
+                        # pixel_value = [raster_data_band1[row, col],raster_data_band2[row, col],raster_data_band3[row, col],raster_data_band4[row, col],raster_data_band5[row, col]]
+                        # Check if the pixel is not a border pixel
+                        if row >= 0 and col >= 0 and row <= src.height - 1 and col <= src.width - 1:
+                            surrounding_pixel_values_band1 = get_surrounding_pixels(raster_data_band1, row, col)
+                            surrounding_pixel_values_band2 = get_surrounding_pixels(raster_data_band2, row, col)
+                            surrounding_pixel_values_band3 = get_surrounding_pixels(raster_data_band3, row, col)
+                            surrounding_pixel_values_band4 = get_surrounding_pixels(raster_data_band4, row, col)
+                            surrounding_pixel_values_band5 = get_surrounding_pixels(raster_data_band5, row, col)
+                            # Append pixel value and surrounding pixel values to lists
+                            # pixels.append(pixel_value)
+                            surrounding_pixels1.append(surrounding_pixel_values_band1)
+                            surrounding_pixels2.append(surrounding_pixel_values_band2)
+                            surrounding_pixels3.append(surrounding_pixel_values_band3)
+                            surrounding_pixels4.append(surrounding_pixel_values_band4)
+                            surrounding_pixels5.append(surrounding_pixel_values_band5)
+                            # print(len(surrounding_pixel_values_band1))
+                    print(row)
+
+                band = [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [],
+                        [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
+                #     11 11 11 11 11 12 12 12 12 12 13 13 13 13 13
+
+                for i in range(1, 4):  # 123
+                    for j in range(1, 4):  # 123
+                        # for k in range(len(surrounding_pixels1)):
+                        #     band[((i-1)*3+(j-1))*5+0].append( surrounding_pixels1[k][(i-1)*3+(j-1)])
+                        #     band[((i - 1) * 3 + (j - 1) )* 5 + 1].append(surrounding_pixels2[k][(i - 1) * 3 + (j - 1)])
+                        #     band[((i - 1) * 3 + (j - 1) )* 5 + 2].append(surrounding_pixels3[k][(i - 1) * 3 + (j - 1)])
+                        #     band[((i - 1) * 3 + (j - 1)) * 5 + 3].append(surrounding_pixels4[k][(i - 1) * 3 + (j - 1)])
+                        #     band[((i - 1) * 3 + (j - 1) )* 5 + 4].append(surrounding_pixels5[k][(i - 1) * 3 + (j - 1)])
+                        print("checkpoint2")
+                        band[((i - 1) * 3 + (j - 1)) * 5 + 0] = [row[(i - 1) * 3 + (j - 1)] for row in
+                                                                 surrounding_pixels1]
+                        print("checkpoint3")
+                        band[((i - 1) * 3 + (j - 1)) * 5 + 1] = [row[(i - 1) * 3 + (j - 1)] for row in
+                                                                 surrounding_pixels2]
+                        band[((i - 1) * 3 + (j - 1)) * 5 + 2] = [row[(i - 1) * 3 + (j - 1)] for row in
+                                                                 surrounding_pixels3]
+                        band[((i - 1) * 3 + (j - 1)) * 5 + 3] = [row[(i - 1) * 3 + (j - 1)] for row in
+                                                                 surrounding_pixels4]
+                        band[((i - 1) * 3 + (j - 1)) * 5 + 4] = [row[(i - 1) * 3 + (j - 1)] for row in
+                                                                 surrounding_pixels5]
+
+                print("checkpoint_0")
+
+                # Create DataFrame
+                dft = pd.DataFrame({'11_band1': band[0], '11_band2': band[1], '11_band3': band[2], '11_band4': band[3],
+                                    '11_band5': band[4],
+                                    '12_band1': band[5], '12_band2': band[6], '12_band3': band[7], '12_band4': band[8],
+                                    '12_band5': band[9],
+                                    '13_band1': band[10], '13_band2': band[11], '13_band3': band[12],
+                                    '13_band4': band[13], '13_band5': band[14],
+                                    '21_band1': band[15], '21_band2': band[16], '21_band3': band[17],
+                                    '21_band4': band[18], '21_band5': band[19],
+                                    '22_band1': band[20], '22_band2': band[21], '22_band3': band[22],
+                                    '22_band4': band[23], '22_band5': band[24],
+                                    '23_band1': band[25], '23_band2': band[26], '23_band3': band[27],
+                                    '23_band4': band[28], '23_band5': band[29],
+                                    '31_band1': band[30], '31_band2': band[31], '31_band3': band[32],
+                                    '31_band4': band[33], '31_band5': band[34],
+                                    '32_band1': band[35], '32_band2': band[36], '32_band3': band[37],
+                                    '32_band4': band[38], '32_band5': band[39],
+                                    '33_band1': band[40], '33_band2': band[41], '33_band3': band[42],
+                                    '33_band4': band[43], '33_band5': band[44],
+                                    })
+                #dft.to_csv('Y:/Python/csu_p3_HPC/databatch_' + str(batch) + '.csv', index=False)
+                df=dft
 
                 for i in range(1, 4):
                     for j in range(1, 4):
