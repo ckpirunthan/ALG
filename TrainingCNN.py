@@ -9,10 +9,10 @@ from tensorflow.keras.callbacks import ModelCheckpoint
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from sklearn.metrics import accuracy_score, confusion_matrix, precision_score, recall_score, f1_score
 # Define data augmentation parameters
-import seasonXXlooder
-import seasonYYlooder
+import seasonXloader
+import seasonYloader
 
-df_alg,df_nonalg,df_nonveg=seasonYYlooder.load()
+df_alg,df_nonalg,df_nonveg=seasonYloader.load()
 
 
 xtrain= pd.concat([df_alg.iloc[:,45:-1],df_nonalg.iloc[:,45:-1], df_nonveg.iloc[:,45:-1]],ignore_index=True)
