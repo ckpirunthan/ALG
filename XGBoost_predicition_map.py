@@ -9,8 +9,7 @@ import math
 import pickle
 from sklearn.preprocessing import MinMaxScaler
 import os
-dfxx=pd.DataFrame({})
-#dfxx.to_csv('Y:/Python/csu_p3_HPC/databatch_' + "test" + '.csv', index=False)
+
 def get_surrounding_pixels(raster, row, col):
     """Get the values of the surrounding 8 pixels."""
     pixel_values = []
@@ -23,10 +22,10 @@ def get_surrounding_pixels(raster, row, col):
     return pixel_values
 
 
-def create_dataframe(raster_file):
+def create_dataframe_and_predict(raster_file):
     """Create a pandas DataFrame with pixel values and surrounding values."""
     with rasterio.open(raster_file) as src:
-        with open("xgboost_model_seasonXY.pkl", "rb") as model_file:
+        with open("model/xgboost_model_seasonXY.pkl", "rb") as model_file:
             xgbr = pickle.load(model_file)
             raster_data_band5 = src.read(5)
 
@@ -206,6 +205,6 @@ def create_dataframe(raster_file):
 
 # Example usage
 raster_file = "site3/site3_micasense.tif"  # Replace with the path to your raster file
-df = create_dataframe(raster_file)
+df = create_dataframe_and_predict(raster_file)
 print(df.head())
 #df.to_csv('dataframe.csv', index=False)
