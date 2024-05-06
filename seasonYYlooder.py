@@ -10,22 +10,14 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from sklearn.metrics import accuracy_score, confusion_matrix, precision_score, recall_score, f1_score
 # Define data augmentation parameters
 
-
-
-
 def load():
-    #df_alg_site1=pd.read_csv("site1/alg_site1_window.csv")
-    #df_alg_site2=pd.read_csv("site2/alg_site2_window.csv")
-    #df_alg= pd.concat([df_alg_site1,df_alg_site2],ignore_index=True)
-    df_alg=pd.read_csv("F:/CSU/site4/alg_site4_window.csv")
-    df_alg = df_alg[df_alg.index % 3 == 0]
-    df_alg.to_csv("site4/alg_site1_window_combined.csv", index=False)
-    #df_alg= df_alg[((df_alg['22_band5'] -df_alg['22_band3'])/(df_alg['22_band5'] +df_alg['22_band3']))> 0.4]
-    print("before alg hi")
-    print(len(df_alg))
+
+    df_alg=pd.read_csv("data/Training/site4/alg_site4_window.csv")
+ 
     df_algtemp=df_alg
     df_alg=pd.DataFrame({})
     # Load the data from CSV
+    #augmentation
     for i in range(8):
 
 
@@ -66,21 +58,15 @@ def load():
 
     df_alg["Label"]=0
     #########################
-    #df_nonalg_site1=pd.read_csv("site1/non_alg_site1_window.csv")
-    #df_nonalg_site2=pd.read_csv("site2/non_alg_site2_window.csv")
-    #df_nonalg= pd.concat([df_nonalg_site1,df_nonalg_site2],ignore_index=True)
-    df_nonalg1=pd.read_csv("F:/CSU/site4/nonalg_site4_window.csv")
-    #df_nonalg1= df_nonalg1[((df_nonalg1['22_band5'] -df_nonalg1['22_band3'])/(df_nonalg1['22_band5'] +df_nonalg1['22_band3']))> 0.4]
-    df_extra=pd.read_csv("F:/CSU/site4/ndvithreshold5&6_points_window.csv")
-    filtered_nonalg = df_extra[((df_extra['22_band5'] -df_extra['22_band3'])/(df_extra['22_band5'] +df_extra['22_band3']))> 0.4]
-    df_nonalg=pd.concat([filtered_nonalg,df_nonalg1],ignore_index=True)
-    df_nonalg.to_csv("site4/nonalg_site1_window_combined.csv", index=False)
+
+    df_nonalg=pd.read_csv("data/Training/site4/nonalg_site4_window.csv")
+
 
     df_nonalgtemp=df_nonalg
     print("before nonalg hi")
     print(len(df_nonalg))
     df_nonalg=pd.DataFrame({})
-
+    #augmentation
     for i in range(8):
 
 
@@ -124,18 +110,13 @@ def load():
     df_nonalg["Label"]=1
 
     ####################################
-    #df_nonveg_site1= pd.read_csv("site1/non_veg_site1_window.csv")
-    #df_nonveg_site2=pd.read_csv("site2/non_veg_site2_window.csv")
-    #df_nonveg= pd.concat([df_nonveg_site1,df_nonveg_site2],ignore_index=True)
-    df_nonveg1=pd.read_csv("F:/CSU/site4/nonveg_site4_window.csv")
-    filtered_nonveg = df_extra[((df_extra['22_band5'] -df_extra['22_band3'])/(df_extra['22_band5'] +df_extra['22_band3']))< 0.4]
-    df_nonveg=pd.concat([filtered_nonveg,df_nonveg1],ignore_index=True)
-    df_nonveg = df_nonveg[df_nonveg.index % 3 == 0]
-    df_nonveg.to_csv("site4/nonveg_site1_window_combined.csv", index=False)
+
+    df_nonveg=pd.read_csv("data/Training/site4/nonveg_site4_window.csv")
     df_nonvegtemp = df_nonveg
     print("before nonveg")
     print(len(df_nonveg))
     df_nonveg = pd.DataFrame({})
+    #augmentation
     for i in range(8):
       heading_list = df_nonvegtemp.columns
       band_mapping = {
@@ -174,14 +155,6 @@ def load():
         df_nonveg[str(i)+str(j)+"_"+"band15"]= (df_nonveg[str(i)+str(j)+"_"+"band5"]/(df_nonveg[str(i)+str(j)+"_"+"band1"]+df_nonveg[str(i)+str(j)+"_"+"band2"]+df_nonveg[str(i)+str(j)+"_"+"band3"]+df_nonveg[str(i)+str(j)+"_"+"band4"]+df_nonveg[str(i)+str(j)+"_"+"band5"]))
 
     df_nonveg["Label"]=2
-    #print("before nonveg")
-    #print(len(df_nonveg))
-    #df_nonveg = df_nonveg[df_nonveg.index % 20 == 0]
-    #print("after nonveg")
-    #print(len(df_nonveg))
-    #df_alg = df_alg[df_alg.index % 3 == 0]
-    #df_nonalg= df_nonalg[df_nonalg.index % 20 == 0]
-    #df_nonveg = df_nonveg[df_nonveg.index % 3 == 0]
 
     print(len(df_alg))
     print(len(df_nonalg))
