@@ -11,11 +11,11 @@ from sklearn.metrics import accuracy_score, classification_report
 import pandas as pd
 import matplotlib.pyplot as plt
 
-import seasonXXlooder
-import seasonYYlooder
-df_alg,df_nonalg,df_nonveg=seasonYYlooder.load()
-#df_alg0,df_nonalg0,df_nonveg0=seasonXXlooder.load()
-#df_alg1,df_nonalg1,df_nonveg1=seasonYYlooder.load()
+import seasonXloader
+import seasonYloader
+df_alg,df_nonalg,df_nonveg=seasonYloader.load()
+#df_alg0,df_nonalg0,df_nonveg0=seasonXloader.load()
+#df_alg1,df_nonalg1,df_nonveg1=seasonYloader.load()
 #df_alg=pd.concat([df_alg0,df_alg1],ignore_index=True)
 #df_nonalg=pd.concat([df_nonalg0,df_nonalg1],ignore_index=True)
 #df_nonveg=pd.concat([df_nonveg0,df_nonveg1],ignore_index=True)
