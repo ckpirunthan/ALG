@@ -22,10 +22,10 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import cross_val_score
 
-import seasonXXlooder
-import seasonYYlooder
+import seasonXloader
+import seasonYloader
 
-df_alg,df_nonalg,df_nonveg=seasonYYlooder.load()
+df_alg,df_nonalg,df_nonveg=seasonYloader.load()
 
 
 xtrain= pd.concat([df_alg.iloc[:,45:-1],df_nonalg.iloc[:,45:-1], df_nonveg.iloc[:,45:-1]],ignore_index=True)
