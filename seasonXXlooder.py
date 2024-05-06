@@ -28,7 +28,7 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
 # Define data augmentation parameters
 def load():
-    df_alg=pd.read_csv("data/training/site1/alg_site1_window.csv")
+    df_alg=pd.read_csv("data/Training/site1/alg_site1_window.csv")
     df_algtemp=df_alg
     #df_alg=pd.DataFrame({})
     # Load the data from CSV
@@ -81,7 +81,7 @@ def load():
 
     df_alg["Label"]=0
     #########################
-    df_nonalg=pd.read_csv("data/training/site1/nonalg_site1_window.cs")
+    df_nonalg=pd.read_csv("data/Training/site1/nonalg_site1_window.cs")
 
     df_nonalgtemp=df_nonalg
     print("before nonalg hi")
@@ -130,7 +130,7 @@ def load():
     print("before nonalg")
     print(len(df_nonalg))
     ####################################
-    df_nonveg= pd.read_csv("data/training/site1/nonveg_site1_window.cs")
+    df_nonveg= pd.read_csv("data/Training/site1/nonveg_site1_window.cs")
 
     df_nonvegtemp=df_nonveg
     print("before nonalg hi")
