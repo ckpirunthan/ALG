@@ -6,11 +6,11 @@ import numpy as np
 from tqdm import tqdm
 
 # Read polygon GeoPackage file
-polygon_gpkg_path = "F:/CSU/site3/quadrads3.gpkg"
+polygon_gpkg_path = "path_to_polygon.gpkg"
 polygon_gdf = gpd.read_file(polygon_gpkg_path)
 
 # Read raster TIFF file
-raster_tif_path = "F:/CSU/site3/site3_micasense.tif"
+raster_tif_path = "path_to_raster.tif"
 with rasterio.open(raster_tif_path) as src:
     raster_bounds = src.bounds
     raster_crs = src.crs
@@ -44,7 +44,7 @@ for geom in tqdm(polygon_gdf.geometry, desc="Processing pixels"):
     points_gdf = gpd.GeoDataFrame(geometry=points2, crs=raster_crs)
     points2=[]
     # Save points to a new GeoPackage file
-    points_gpkg_path = "F:/CSU/site3/clipped_MS_quads/quads/quad"+str(id_value)+".gpkg"
+    points_gpkg_path = "Path_to_points"+str(id_value)+".gpkg"  # This save points file for individual polygon
     points_gdf.to_file(points_gpkg_path, driver="GPKG")
 
 
@@ -52,5 +52,5 @@ for geom in tqdm(polygon_gdf.geometry, desc="Processing pixels"):
 points_gdf = gpd.GeoDataFrame(geometry=points, crs=raster_crs)
 
 # Save points to a new GeoPackage file
-points_gpkg_path = "F:/CSU/site3/clipped_MS_quads/quads/quad.gpkg"
+points_gpkg_path = "path_to_points_common.gpkg"  # This save common points file for all polygons
 points_gdf.to_file(points_gpkg_path, driver="GPKG")
