@@ -13,16 +13,9 @@ import seasonXXlooder
 import seasonYYlooder
 
 df_alg,df_nonalg,df_nonveg=seasonYYlooder.load()
-#df_alg0,df_nonalg0,df_nonveg0=seasonXXlooder.load()
-#df_alg1,df_nonalg1,df_nonveg1=seasonYYlooder.load()
-#df_alg=pd.concat([df_alg0,df_alg1],ignore_index=True)
-#df_nonalg=pd.concat([df_nonalg0,df_nonalg1],ignore_index=True)
-#df_nonveg=pd.concat([df_nonveg0,df_nonveg1],ignore_index=True)
+
 
 xtrain= pd.concat([df_alg.iloc[:,45:-1],df_nonalg.iloc[:,45:-1], df_nonveg.iloc[:,45:-1]],ignore_index=True)
-#xtrain= pd.concat([df_alg.iloc[:,2:7],df_nonalg.iloc[:,2:7], df_nonveg.iloc[:,2:7]],ignore_index=True)
-#scaler = MinMaxScaler()
-#xtrain= pd.DataFrame(scaler.fit_transform(xtrain), columns=xtrain.columns)
 ytrain= pd.concat([df_alg.iloc[:,-1:],df_nonalg.iloc[:,-1:], df_nonveg.iloc[:,-1:]],ignore_index=True)
 
 
@@ -41,28 +34,8 @@ print("1")
 
 # Split the data into training and testing sets
 X_train, X_test, y_train, y_test = train_test_split(X_reshaped, y, test_size=0.2, random_state=42)
-# class_0_generator = datagen.flow(X_train[y_train == 0], y_train[y_train == 0], batch_size=32)
-# print("2")
 
-# # Create a new generator for class 1
-# class_1_generator = datagen.flow(X_train[y_train == 1], y_train[y_train == 1], batch_size=32)
-# print("2_")
-# combined_generator = np.concatenate((class_0_generator, class_1_generator), axis=0)
-# print("2__")
-# class_2_data = X_train[y_train == 2]
-# class_2_labels = y_train[y_train == 2]
-# print("3")
-# # Combine the original data for class 3 with the augmented data for classes 0 and 1
-# combined_data = np.concatenate((combined_generator, class_2_data), axis=0)
-# combined_labels = np.concatenate((np.zeros(len(class_0_generator)), np.ones(len(class_1_generator)), class_2_labels))
-# print("4")
-# # Shuffle the combined data
-# combined_indices = np.random.permutation(len(combined_data))
-# combined_data = combined_data[combined_indices]
-# combined_labels = combined_labels[combined_indices]
 
-# print(len(X_train))
-# print(len(combined_data))
 input_shape = (3, 3, 10)
 # Define the CNN model
 model = Sequential()
@@ -80,12 +53,10 @@ model.add(Dense(3, activation='softmax'))  # Output size is 3, using softmax act
 
 # Compile the model
 model.compile(loss='sparse_categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-checkpoint_callback = ModelCheckpoint(filepath='cnn/270424/modelY_epoch_{epoch:02d}.h5', save_freq='epoch', save_weights_only=False, verbose=0)
-
-
+checkpoint_callback = ModelCheckpoint(filepath='model/modelY_epoch_{epoch:02d}.h5', save_freq='epoch', save_weights_only=False, verbose=0)
 # Print model summary
 model.summary()
-with open('cnn/270424/model_summary.txt', 'w') as f:
+with open('model/model_summary.txt', 'w') as f:
     # Redirect print output to the text file
     model.summary(print_fn=lambda x: f.write(x + '\n'))
 output_file_path = 'cnn/270424/training_logs.txt'
@@ -127,7 +98,7 @@ plt.plot(history.history['val_loss'], label='Validation Loss')
 plt.xlabel('Epoch')
 plt.ylabel('Loss')
 plt.legend()
-plt.savefig('cnn/2704032024/loss_plot.png')
+plt.savefig('cnnloss_plot.png')
 plt.show()
 
 plt.plot(history.history['accuracy'], label='Training Accuracy')
