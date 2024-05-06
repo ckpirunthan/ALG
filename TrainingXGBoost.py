@@ -48,7 +48,7 @@ for n in [600]:
         evalset = [(xtrain, ytrain), (xtest, ytest)]
         #xgbr = xgb.XGBClassifier(objective='reg:squarederror',max_depth= depth, colsample_bylevel=col ,learning_rate=lr,n_estimators= n)
         xgbr.fit(xtrain, ytrain, eval_metric='mlogloss', eval_set=evalset)
-        with open("xgboost_model_seasonY.pkl", "wb") as model_file:
+        with open("model/xgboost_model_seasonY.pkl", "wb") as model_file:
           pickle.dump(xgbr, model_file)
         #from sklearn.metrics import mean_squared_error
 
