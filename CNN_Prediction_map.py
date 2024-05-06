@@ -39,12 +39,6 @@ def create_dataframe(raster_file):
 
             # Initialize lists to store pixel values and surrounding pixel values
             pixels = []
-            surrounding_pixels1 = []
-            surrounding_pixels2 = []
-            surrounding_pixels3 = []
-            surrounding_pixels4 = []
-            surrounding_pixels5 = []
-
             # Iterate over each pixel
             print(src.height)
             for batch in range(1 + math.floor(src.height / 1000)):
