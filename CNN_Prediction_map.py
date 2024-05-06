@@ -10,8 +10,7 @@ import pickle
 import tensorflow as tf
 from sklearn.preprocessing import MinMaxScaler
 import os
-#dfxx=pd.DataFrame({})
-#dfxx.to_csv('Y:/Python/csu_p3_HPC/databatch_' + "test" + '.csv', index=False)
+
 def get_surrounding_pixels(raster, row, col):
     """Get the values of the surrounding 8 pixels."""
     pixel_values = []
@@ -179,7 +178,7 @@ def create_dataframe(raster_file):
                 df2 = df.iloc[:, 45:].values
                 df2_reshaped = df2.reshape(-1, 3, 3, 10)
                 print("hi")
-                model = tf.keras.models.load_model('modelXY_epoch_81.h5')
+                model = tf.keras.models.load_model('model/modelXY_epoch_81.h5')
                 pred=model.predict(df2_reshaped)
                 print(np.argmax(pred, axis=1))
                 print(pred)
