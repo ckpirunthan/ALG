@@ -18,4 +18,7 @@ This repository contains Python files organized into two main folders: `data` an
 - **`trainingSVM.py`**: Trains and stores Support Vector Machine (SVM) models using the provided dataframes.
 - **`CNN_Prediction_map.py`**: Reads Multispectral UAV-generated orthomosaic images (raster file bands should be in the order blue, green, red, red-edge, and NIR) and predicts each pixel location using the developed CNN model.
 - **`XGBoost_prediction_map.py`**: Reads Multispectral UAV-generated orthomosaic images and predicts each pixel location using the developed XGBoost model.
+- - **`CNN_Prediction_map.py`**: Reads Multispectral UAV-generated orthomosaic images (raster file bands should be in the order blue, green, red, red-edge, and NIR) and predicts each pixel location using the developed CNN model.
+- **`XGBoost_prediction_map.py`**: Reads Multispectral UAV-generated orthomosaic images (raster file bands should be in the order blue, green, red, red-edge, and NIR) and predicts each pixel location using the developed XGBoost model.
+  ![CNN model](https://github.com/ckpirunthan/ALG/blob/main/Prediction%20using%2CNN.jpg)
 These scripts are essential for generating and preparing the data files used in this project.
