@@ -16,5 +16,6 @@ This repository contains Python files organized into two main folders: `data` an
 - **`trainingXGBoost.py`**: Trains and stores XGBoost models using the provided dataframes.
 - **`trainingRF.py`**: Trains and stores Random Forest models using the provided dataframes.
 - **`trainingSVM.py`**: Trains and stores Support Vector Machine (SVM) models using the provided dataframes.
-
+- **`CNN_Prediction_map.py`**: Reads Multispectral UAV-generated orthomosaic images (raster file bands should be in the order blue, green, red, red-edge, and NIR) and predicts each pixel location using the developed CNN model.
+- **`XGBoost_prediction_map.py`**: Reads Multispectral UAV-generated orthomosaic images and predicts each pixel location using the developed XGBoost model.
 These scripts are essential for generating and preparing the data files used in this project.
