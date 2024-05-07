@@ -12,7 +12,7 @@ This repository contains Python files organized into two main folders: `data` an
 - **`seasonXloader.py`**: This file loads data from season X (site 1) stored within the `data` directory, performs data augmentation, and converts it into Pandas dataframes: `df_alg`, `df_nonalg`, and `df_nonveg`.
 - **`seasonYloader.py`**: This file loads data from season Y (site 4) stored within the `data` directory, performs data augmentation, and converts it into Pandas dataframes: `df_alg`, `df_nonalg`, and `df_nonveg`.
 - **`trainingCNN.py`**: Trains and stores Convolutional Neural Network (CNN) models using the provided dataframes.
-- ![CNN Model](https://github.com/ckpirunthan/ALG/blob/main/CNN%20model.jpg)
+- ![CNN model](https://github.com/ckpirunthan/ALG/blob/main/CNN%20model.jpg)
 - **`trainingXGBoost.py`**: Trains and stores XGBoost models using the provided dataframes.
 - **`trainingRF.py`**: Trains and stores Random Forest models using the provided dataframes.
 - **`trainingSVM.py`**: Trains and stores Support Vector Machine (SVM) models using the provided dataframes.
