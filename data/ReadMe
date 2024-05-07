@@ -1,1 +1,1 @@
-
+This directory consist ofthe training data used for developing SVM,RF,XGBoost and CNN models. Evey data point consist 10 spectral indices of  9 pixel (3x3) (Alogether 90 features)
